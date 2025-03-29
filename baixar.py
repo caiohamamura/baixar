@@ -94,33 +94,27 @@ def copy_and_move_file(drive_service, file_id, new_file_name, folder_id):
         return None
 
 
-        def print_help():
-            print("Usage: python baixar.py <target_folder_id> <public_file_link> <new_file_name>")
-            print("Arguments:")
-            print("  <public_file_link>   The public link of the Google Drive file to be copied.")
-            print("  <new_file_name>      The name for the copied file.")
-            print("  <target_folder_id>   The ID of the Google Drive folder where the file will be moved.")
-            print("\nExample:")
-            print("  python baixar.py https://drive.google.com/file/d/12345/view CopiedFileName 1a2b3c4d5e6f7g8h9i0j")
+def print_help():
+    print("Usage: python baixar.py <target_folder_id> <public_file_link> <new_file_name>")
+    print("Arguments:")
+    print("  <public_file_link>   The public link of the Google Drive file to be copied.")
+    print("  <new_file_name>      The name for the copied file.")
+    print("  <target_folder_id>   The ID of the Google Drive folder where the file will be moved.")
+    print("\nExample:")
+    print("  python baixar.py https://drive.google.com/file/d/12345/view CopiedFileName 1a2b3c4d5e6f7g8h9i0j")
 
 def run():
     # Use environment variable for folder ID if available
-    target_folder_id = os.environ.get('GDRIVE_FOLDER_ID', sys.argv[3])
+    target_folder_id = os.environ.get('GDRIVE_FOLDER_ID')
 
     # Validate inputs
-    if not target_folder_id:
-        print("Error: Target folder ID is missing.")
-        sys.exit(1)
-
     if len(sys.argv) < 3 or (len(sys.argv) < 4 and not target_folder_id):
         print_help()
         sys.exit(1)
-
+    
     public_link = sys.argv[1]
     file_name = sys.argv[2]
     target_folder_id = sys.argv[3]
-
-
 
     drive_service = authenticate_drive()
     

@@ -6,7 +6,7 @@ setup(
     description="Script para copiar e mover arquivos do Google Drive usando a API do Google Drive.",
     author="Caio Hamamura",
     author_email="caiohamamura@gmail.com",
-    packages=find_packages(),
+    py_modules=["baixar"],
     install_requires=[
         "google-api-python-client",
         "google-auth-httplib2",
